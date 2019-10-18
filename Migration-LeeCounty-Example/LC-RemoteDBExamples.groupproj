@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{1FF79B28-306F-46B8-809B-21092E9D69AE}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Server\LCServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Client\TreeviewVCLFNCClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Dataset\TreeviewVCLFNCDataset.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="LCServer">
+        <MSBuild Projects="Server\LCServer.dproj"/>
+    </Target>
+    <Target Name="LCServer:Clean">
+        <MSBuild Projects="Server\LCServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="LCServer:Make">
+        <MSBuild Projects="Server\LCServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TreeviewVCLFNCClient">
+        <MSBuild Projects="Client\TreeviewVCLFNCClient.dproj"/>
+    </Target>
+    <Target Name="TreeviewVCLFNCClient:Clean">
+        <MSBuild Projects="Client\TreeviewVCLFNCClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TreeviewVCLFNCClient:Make">
+        <MSBuild Projects="Client\TreeviewVCLFNCClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TreeviewVCLFNCDataset">
+        <MSBuild Projects="Dataset\TreeviewVCLFNCDataset.dproj"/>
+    </Target>
+    <Target Name="TreeviewVCLFNCDataset:Clean">
+        <MSBuild Projects="Dataset\TreeviewVCLFNCDataset.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TreeviewVCLFNCDataset:Make">
+        <MSBuild Projects="Dataset\TreeviewVCLFNCDataset.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="LCServer;TreeviewVCLFNCClient;TreeviewVCLFNCDataset"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="LCServer:Clean;TreeviewVCLFNCClient:Clean;TreeviewVCLFNCDataset:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="LCServer:Make;TreeviewVCLFNCClient:Make;TreeviewVCLFNCDataset:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
